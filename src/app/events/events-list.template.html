@@ -3,5 +3,8 @@
   <event-thumbnail
     [event]="eventData"
     (eventClick)="handleEventClicked($event)"
+    #thumbnail
+    #someRandomProperty
   ></event-thumbnail>
+  <button (click)="thumbnail.logFoo()">{{thumbnail.someRandomProperty}}</button>
 </div>
