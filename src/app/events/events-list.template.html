@@ -1,10 +1,18 @@
 <div>
   <h1>Some cool Angular events</h1>
-  <event-thumbnail
-    [event]="eventData"
-    (eventClick)="handleEventClicked($event)"
-    #thumbnail
-    #someRandomProperty
-  ></event-thumbnail>
-  <button (click)="thumbnail.logFoo()">{{thumbnail.someRandomProperty}}</button>
+  <hr />
+  <div class="row">
+    <div *ngFor="let event of eventData" class="col-md-5">
+      <event-thumbnail
+        [event]="event"
+        (eventClick)="handleEventClicked($event)"
+        (click)="handleThumbnailClick(event.name)"
+        #thumbnail
+      ></event-thumbnail>
+
+      <!-- <button (click)="thumbnail.logFoo()">
+        {{thumbnail.someRandomProperty}}
+      </button> -->
+    </div>
+  </div>
 </div>
