@@ -1,10 +1,13 @@
-import { EventListResolver } from './events/events-list-resolver.service';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
-import { CreateEventComponent } from './events/create-event.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { eventDetailsComponent } from './events/event-details/event-details.component';
-import { EventListComponent } from './events/events-list.components';
+
+import {
+  EventListResolver,
+  CreateEventComponent,
+  eventDetailsComponent,
+  EventListComponent,
+  EventRouteActivator,
+} from './events/index';
 import { Error404Component } from './errors/404.component';
 
 const routes: Routes = [
@@ -25,6 +28,11 @@ const routes: Routes = [
   },
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/events', pathMatch: 'full' },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./user/user.module').then((module) => module.UserModule),
+  }, // returns a promise that load with dynamic import user module
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
