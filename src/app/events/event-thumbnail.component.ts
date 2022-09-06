@@ -1,3 +1,4 @@
+import { IEvent } from './shared/event.model';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
@@ -15,7 +16,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   ],
 })
 export class EventThumbnailComponent {
-  @Input() event: any;
+  @Input()
+  //should be initialized, otherwise warnings
+  event!: IEvent | any;
   @Output() eventClick = new EventEmitter();
   someRandomProperty: any = 'some value';
 
@@ -26,18 +29,20 @@ export class EventThumbnailComponent {
   logFoo() {
     console.log('foo');
   }
+  //ngClass version
   getStartTimeClass() {
     if (this.event && this.event.time === '8:00 am') return ['green', 'bold'];
     return [];
   }
-  getStartTimeClassNgStyle(): any {
-    if (this.event && this.event.time === '8:00 am')
-      return [
-        {
-          color: '#003300',
-          'font-weight': 'bold',
-        },
-      ];
-    return {};
-  }
+  // ngStyle version
+  // getStartTimeClassNgStyle(): any {
+  //   if (this.event && this.event.time === '8:00 am')
+  //     return [
+  //       {
+  //         color: '#003300',
+  //         'font-weight': 'bold',
+  //       },
+  //     ];
+  //   return {};
+  // }
 }
