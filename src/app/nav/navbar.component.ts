@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../user/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -22,4 +24,6 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class NavBarComponent {}
+export class NavBarComponent {
+  constructor(public AuthService: AuthService) {}
+}
