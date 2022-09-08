@@ -17,4 +17,9 @@ export class AuthService {
     //Noninverted Boolean => !! is not an operator; it's just the ! operator twice. It converts Object to boolean
     return !!this.currentUser;
   }
+
+  updateCurrentUser(firstName: string, lastName: string) {
+    this.currentUser.firstName = firstName;
+    this.currentUser.lastName = lastName;
+  }
 }

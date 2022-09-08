@@ -14,6 +14,7 @@ const routes: Routes = [
   {
     path: 'events/new',
     component: CreateEventComponent,
+    //prevents from leaving this router (aka Page) simply by click
     canDeactivate: ['canDeactivateCreateEvent'],
   },
   {
