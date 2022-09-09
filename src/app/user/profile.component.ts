@@ -37,10 +37,9 @@ export class ProfileComponent implements OnInit {
   constructor(public AuthService: AuthService, private route: Router) {}
   ngOnInit(): void {
     //Auth Service allows us to prepopulate the forms. If not necessary, let firstName: FormControl = new FormControl() would be enough
-    //multiple validators are allowed
     this.firstName = new FormControl(this.AuthService.currentUser.firstName, [
       Validators.required,
-      Validators.pattern('[a-zA-Z].*'),
+      Validators.pattern('[a-zA-Z].*'), //multiple validators are allowed
     ]);
     this.lastName = new FormControl(
       this.AuthService.currentUser.lastName,
