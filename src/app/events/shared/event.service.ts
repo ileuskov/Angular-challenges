@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { IEvent } from './event.model';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
@@ -14,6 +15,12 @@ export class eventService {
   }
   getSpecificEvent(eventId: number) {
     return eventData.find((event) => event.id === eventId);
+  }
+
+  saveEvent(newEvent: any) {
+    newEvent.id = 999;
+    newEvent.session = [];
+    eventData.push(newEvent);
   }
 }
 
