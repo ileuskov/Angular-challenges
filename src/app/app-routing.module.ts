@@ -1,3 +1,4 @@
+import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -27,6 +28,7 @@ const routes: Routes = [
     component: eventDetailsComponent,
     canActivate: [EventRouteActivator],
   },
+  { path: 'events/session/new', component: CreateSessionComponent },
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/events', pathMatch: 'full' },
   {

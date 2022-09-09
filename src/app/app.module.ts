@@ -1,3 +1,5 @@
+import { CreateSessionComponent } from './events/event-details/create-session.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,8 +30,9 @@ import {
     NavBarComponent,
     eventDetailsComponent,
     CreateEventComponent,
+    CreateSessionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     eventService,
     toastrService,
