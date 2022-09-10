@@ -23,7 +23,7 @@
       [ngClass]="{ error: presenter.invalid && presenter.dirty }"
     >
       <label for="eventDate">Presenter:</label>
-      <em *ngIf="presenter.invalid && presenter.dirty"></em>
+      <em *ngIf="presenter.invalid && presenter.dirty">Required</em>
       <input
         formControlName="presenter"
         id="presenter"
@@ -61,7 +61,20 @@
       [ngClass]="{ error: abstract.invalid && abstract.dirty }"
     >
       <label for="abstract">Abstract:</label>
-      <em *ngIf="abstract.invalid && abstract.dirty"></em>
+      <em
+        *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.required"
+        >Required</em
+      >
+      <em
+        *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.maxlength"
+        >Max 400 characters
+      </em>
+      <em
+        *ngIf="
+          abstract.invalid && abstract.dirty && abstract.errors?.restrictedWords
+        "
+        >Restricted Words found: {{ abstract.errors?.restrictedWords }}</em
+      >
       <textarea
         formControlName="abstract"
         id="abstract"
