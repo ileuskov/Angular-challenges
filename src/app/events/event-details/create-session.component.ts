@@ -32,14 +32,15 @@ import { ISession, restrictedWordsValidator } from '../shared/index';
   ],
 })
 export class CreateSessionComponent implements OnInit {
-  newSessionForm!: FormGroup;
-  name!: FormControl;
-  presenter!: FormControl;
-  duration!: FormControl;
-  level!: FormControl;
-  abstract!: FormControl;
+  constructor() {
+    this.newSessionForm = new FormGroup({
+      name: this.name,
+      presenter: this.presenter,
+      duration: this.duration,
+      level: this.level,
+      abstract: this.abstract,
+    });
 
-  ngOnInit(): void {
     this.name = new FormControl('', Validators.required);
     this.presenter = new FormControl('', Validators.required);
     this.duration = new FormControl('', Validators.required);
@@ -49,15 +50,15 @@ export class CreateSessionComponent implements OnInit {
       Validators.maxLength(400),
       restrictedWordsValidator(['foo', 'bar']),
     ]);
-
-    this.newSessionForm = new FormGroup({
-      name: this.name,
-      presenter: this.presenter,
-      duration: this.duration,
-      level: this.level,
-      abstract: this.abstract,
-    });
   }
+  newSessionForm!: FormGroup;
+  name!: FormControl;
+  presenter!: FormControl;
+  duration!: FormControl;
+  level!: FormControl;
+  abstract!: FormControl;
+
+  ngOnInit(): void {}
 
   saveSession(newSessionFormValue: any) {
     let session: ISession = {
