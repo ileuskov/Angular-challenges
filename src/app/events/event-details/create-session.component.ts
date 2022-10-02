@@ -32,25 +32,6 @@ import { ISession, restrictedWordsValidator } from '../shared/index';
   ],
 })
 export class CreateSessionComponent implements OnInit {
-  constructor() {
-    this.newSessionForm = new FormGroup({
-      name: this.name,
-      presenter: this.presenter,
-      duration: this.duration,
-      level: this.level,
-      abstract: this.abstract,
-    });
-
-    this.name = new FormControl('', Validators.required);
-    this.presenter = new FormControl('', Validators.required);
-    this.duration = new FormControl('', Validators.required);
-    this.level = new FormControl('', Validators.required);
-    this.abstract = new FormControl('', [
-      Validators.required,
-      Validators.maxLength(400),
-      restrictedWordsValidator(['foo', 'bar']),
-    ]);
-  }
   newSessionForm!: FormGroup;
   name!: FormControl;
   presenter!: FormControl;
@@ -58,7 +39,25 @@ export class CreateSessionComponent implements OnInit {
   level!: FormControl;
   abstract!: FormControl;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = new FormControl('', Validators.required);
+    this.presenter = new FormControl('', Validators.required);
+    this.duration = new FormControl('', Validators.required);
+    this.level = new FormControl('', Validators.required);
+    this.abstract = new FormControl('', [
+      Validators.required,
+      Validators.maxLength(400),
+      // restrictedWordsValidator(['foo', 'bar']),
+    ]);
+
+    this.newSessionForm = new FormGroup({
+      name: this.name,
+      presenter: this.presenter,
+      duration: this.duration,
+      level: this.level,
+      abstract: this.abstract,
+    });
+  }
 
   saveSession(newSessionFormValue: any) {
     let session: ISession = {
