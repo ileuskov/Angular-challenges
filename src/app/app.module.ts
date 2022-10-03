@@ -1,3 +1,4 @@
+import { DurationPipe } from './events/shared/duration.pipe';
 import { SessionLinstComponent } from './events/event-details/session-list.component';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +36,7 @@ import {
     CreateSessionComponent,
     SessionLinstComponent,
     CollapsibleWellComponent,
+    DurationPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
