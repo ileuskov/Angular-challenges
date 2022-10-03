@@ -5,3 +5,4 @@ export * from './events-list-resolver.service';
 export * from './events-list.components';
 export * from './shared/index';
 export * from './event-details/index';
+export * from '../common/collapsible-well.component';

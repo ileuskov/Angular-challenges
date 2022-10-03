@@ -20,6 +20,7 @@ import {
   EventListComponent,
   eventService,
   EventRouteActivator,
+  CollapsibleWellComponent,
 } from './events/index';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
     CreateEventComponent,
     CreateSessionComponent,
     SessionLinstComponent,
+    CollapsibleWellComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
