@@ -1,5 +1,6 @@
+import { TOASTR_TOKEN, Toastr } from './../common/toastr.service';
 import { AuthService } from './auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -34,7 +35,14 @@ export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   firstName!: FormControl;
   lastName!: FormControl;
-  constructor(public AuthService: AuthService, private route: Router) {}
+  constructor(
+    //type and @Inject are handled by Angular
+    public AuthService: AuthService,
+    //@Inject handled manually and type is provided by me as well
+    @Inject(TOASTR_TOKEN) private toastr: Toastr,
+    private route: Router
+  ) {}
+
   ngOnInit(): void {
     //Auth Service allows us to prepopulate the forms. If not necessary, let firstName: FormControl = new FormControl() would be enough
     this.firstName = new FormControl(this.AuthService.currentUser.firstName, [
@@ -62,7 +70,8 @@ export class ProfileComponent implements OnInit {
         profileFormValues.firstName,
         profileFormValues.lastName
       );
-      this.route.navigate(['events']);
+      // this.route.navigate(['events']);
+      this.toastr.success('Profile Saved');
     }
   }
 

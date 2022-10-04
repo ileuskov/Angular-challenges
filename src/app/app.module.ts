@@ -6,7 +6,7 @@ import { AuthService } from './user/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { toastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,9 @@ import {
   EventRouteActivator,
   CollapsibleWellComponent,
 } from './events/index';
+
+// let toastr: Toastr = window['toastr'];
+declare let toastr: Toastr;
 
 @NgModule({
   declarations: [
@@ -41,8 +44,8 @@ import {
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     eventService,
-    toastrService,
-    EventRouteActivator,
+    { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: EventRouteActivator, useClass: EventRouteActivator }, // shorter version is "EventRouteActivator"
     EventListResolver,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
