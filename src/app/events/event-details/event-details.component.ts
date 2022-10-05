@@ -1,7 +1,7 @@
 import { IEvent, ISession } from './../shared/event.model';
 import { eventService } from './../shared/event.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   templateUrl: './event-details.component.html',
@@ -31,9 +31,17 @@ export class eventDetailsComponent implements OnInit {
     private activRouteService: ActivatedRoute
   ) {}
   ngOnInit() {
-    this.event = this.eventService.getSpecificEvent(
-      +this.activRouteService.snapshot.params['id']
-    );
+    //subscribing to route parameters for navigation. Doing this requires taking care of other pieces of state like addMode
+    this.activRouteService.params.forEach((params: Params) => {
+      this.event = this.eventService.getSpecificEvent(+params['id']);
+      this.addMode = false;
+    });
+
+    //cause bug of only listening to events/id for the 1 time component loads => not changing ids later on search for example
+
+    // this.event = this.eventService.getSpecificEvent(
+    //   +this.activRouteService.snapshot.params['id']
+    // );
   }
 
   addSession() {
