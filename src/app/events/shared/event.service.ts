@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { IEvent } from './event.model';
-import { Injectable } from '@angular/core';
+import { IEvent, ISession } from './event.model';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable()
@@ -26,6 +26,30 @@ export class eventService {
   updateEvent(event: any) {
     let index = eventData.findIndex((x) => (x.id = event.id));
     eventData[index] = event;
+  }
+
+  searchSessions(searchTerm: string) {
+    let term = searchTerm.toLocaleLowerCase();
+    let results: any = [];
+    //filter sessions which names contain term that is being used to search
+    eventData.forEach((event) => {
+      let matchingSessions = event.sessions.filter((session) =>
+        session.name.toLocaleLowerCase().includes(term)
+      );
+      //quick & easy way to add ids to sessions
+      matchingSessions = matchingSessions.map((session: any) => {
+        session.eventId = event.id;
+        return session;
+      });
+      results = results.concat(matchingSessions);
+    });
+
+    //simulate asynchronous data reception
+    const emitter = new EventEmitter(true);
+    setTimeout(() => {
+      emitter.emit(results);
+    }, 1000);
+    return results;
   }
 }
 
