@@ -1,3 +1,5 @@
+import { LocationValidator } from './events/location-validator.directive';
+import { VoterService } from './events/event-details/voter.service';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { SimpleModalComponent } from './common/simple-modal.component';
 import { DurationPipe } from './events/shared/duration.pipe';
@@ -28,6 +30,7 @@ import {
   EventListComponent,
   eventService,
   EventRouteActivator,
+  UpvoteComponent,
 } from './events/index';
 
 // let toastr: Toastr = window['toastr'];
@@ -49,6 +52,8 @@ declare let jQuery: any;
     DurationPipe,
     SimpleModalComponent,
     ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidator,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
@@ -59,6 +64,7 @@ declare let jQuery: any;
     EventListResolver,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+    VoterService,
   ],
   bootstrap: [AppComponent],
 })
