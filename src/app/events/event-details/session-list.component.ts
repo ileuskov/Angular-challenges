@@ -1,3 +1,5 @@
+import { VoterService } from './voter.service';
+import { AuthService } from './../../user/auth.service';
 import { ISession } from './../shared/event.model';
 import { Component, Input, OnChanges } from '@angular/core';
 
@@ -12,6 +14,10 @@ export class SessionLinstComponent implements OnChanges {
   visibleSessions: ISession[] = [];
   @Input() sortBy!: string;
 
+  constructor(
+    public authService: AuthService,
+    private voterService: VoterService
+  ) {}
   //needed so that we can filter dynamically when the category to filter changes
   ngOnChanges() {
     //if sessions exist (=set)
@@ -21,6 +27,31 @@ export class SessionLinstComponent implements OnChanges {
         ? this.visibleSessions.sort(sortByNameAsc)
         : this.visibleSessions.sort(sortByVotesDesc);
     }
+  }
+
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this.voterService.deleteVoter(
+        session,
+        this.authService.currentUser.userName
+      );
+    } else {
+      this.voterService.addVoter(
+        session,
+        this.authService.currentUser.userName
+      );
+    }
+
+    if (this.sortBy === 'votes') {
+      this.visibleSessions.sort(sortByVotesDesc);
+    }
+  }
+
+  userHasVoted(session: ISession) {
+    return this.voterService.userHasVoted(
+      session,
+      this.authService.currentUser.userName
+    );
   }
 
   filterSessions(filter: string) {
