@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 export class EventListResolver implements Resolve<any> {
   constructor(private eventService: eventService) {}
   resolve() {
-    return this.eventService.getEvents().pipe(map((events) => events));
+    //angular will automatically subscribe because the return of getEvents is an observable
+    return this.eventService.getEvents();
   }
 }

@@ -32,8 +32,8 @@ export class eventDetailsComponent implements OnInit {
   ) {}
   ngOnInit() {
     //subscribing to route parameters for navigation. Doing this requires taking care of other pieces of state like addMode
-    this.activRouteService.params.forEach((params: Params) => {
-      this.event = this.eventService.getSpecificEvent(+params['id']);
+    this.activRouteService.data.forEach((data) => {
+      this.event = data['event'];
       this.addMode = false;
     });
 
@@ -55,7 +55,7 @@ export class eventDetailsComponent implements OnInit {
     );
     session.id = nextId + 1;
     this.event.sessions.push(session);
-    this.eventService.updateEvent(this.event);
+    this.eventService.saveEvent(this.event).subscribe();
     this.addMode = false;
   }
 

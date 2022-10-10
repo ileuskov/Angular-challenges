@@ -13,6 +13,7 @@ export class SessionLinstComponent implements OnChanges {
   @Input() filterBy!: string;
   visibleSessions: ISession[] = [];
   @Input() sortBy!: string;
+  @Input() eventId!: number;
 
   constructor(
     public authService: AuthService,
@@ -32,11 +33,13 @@ export class SessionLinstComponent implements OnChanges {
   toggleVote(session: ISession) {
     if (this.userHasVoted(session)) {
       this.voterService.deleteVoter(
+        this.eventId,
         session,
         this.authService.currentUser.userName
       );
     } else {
       this.voterService.addVoter(
+        this.eventId,
         session,
         this.authService.currentUser.userName
       );
