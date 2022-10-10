@@ -98,14 +98,11 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "node_modules/ngf-bootstrap/dist/bootstrap.min.css",
-              "node_modules/toastr/build/toastr.min.js",
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+
               "node_modules/toastr/build/toastr.min.js"
             ]
           }
