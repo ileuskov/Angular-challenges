@@ -1,3 +1,4 @@
+import { EventResolver } from './events/event-resolver.service';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,7 +8,6 @@ import {
   CreateEventComponent,
   eventDetailsComponent,
   EventListComponent,
-  EventRouteActivator,
 } from './events/index';
 import { Error404Component } from './errors/404.component';
 
@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'events/:id',
     component: eventDetailsComponent,
-    canActivate: [EventRouteActivator],
+    resolve: { event: EventResolver },
   },
   { path: 'events/session/new', component: CreateSessionComponent },
   { path: '404', component: Error404Component },
