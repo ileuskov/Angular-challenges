@@ -1,8 +1,9 @@
-import { EventResolver } from './events/event-resolver.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+
+import { EventResolver } from './events/event-resolver.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { VoterService } from './events/event-details/voter.service';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
@@ -20,7 +21,7 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventsAppComponent } from './events-app.component';
+
 import { NavBarComponent } from './nav/navbar.component';
 
 import {
@@ -35,13 +36,14 @@ import {
   LocationValidator,
 } from './events/index';
 
+import { EventsAppComponent } from './events-app.component';
+
 // let toastr: Toastr = window['toastr'];
 declare let toastr: Toastr;
 declare let jQuery: any;
 
 @NgModule({
   declarations: [
-    AppComponent,
     EventsAppComponent,
     EventListComponent,
     EventThumbnailComponent,
@@ -74,7 +76,7 @@ declare let jQuery: any;
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     VoterService,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [EventsAppComponent],
 })
 export class AppModule {}
 
