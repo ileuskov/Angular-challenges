@@ -1,55 +1,52 @@
+import {
+  HttpClient,
+  HttpHeaderResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { IEvent, ISession } from './event.model';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class eventService {
+  constructor(private http: HttpClient) {}
+
   getEvents(): Observable<IEvent[]> {
-    let subject = new Subject<IEvent[]>();
-    setTimeout(() => {
-      subject.next(eventData);
-      subject.complete();
-    }, 100);
-    return subject;
-  }
-  getSpecificEvent(eventId: number) {
-    return eventData.find((event) => event.id === eventId);
+    // get data from server with HTTP get
+    return this.http
+      .get<IEvent[]>('/api/events')
+      .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
   }
 
-  saveEvent(newEvent: any) {
-    newEvent.id = 999;
-    newEvent.session = [];
-    eventData.push(newEvent);
+  getSpecificEvent(eventId: number): Observable<IEvent> {
+    return this.http
+      .get<IEvent>('/api/events/' + eventId)
+      .pipe(catchError(this.handleError<IEvent>('getEvent')));
+    // return eventData.find((event) => event.id === eventId);
   }
 
-  updateEvent(event: any) {
-    let index = eventData.findIndex((x) => (x.id = event.id));
-    eventData[index] = event;
+  saveEvent(newEvent: any): Observable<any> {
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http
+      .post<IEvent>('/api/events', newEvent, options)
+      .pipe(catchError(this.handleError<IEvent>('saveEvent')));
   }
 
-  searchSessions(searchTerm: string) {
-    let term = searchTerm.toLocaleLowerCase();
-    let results: any = [];
-    //filter sessions which names contain term that is being used to search
-    eventData.forEach((event) => {
-      let matchingSessions = event.sessions.filter((session) =>
-        session.name.toLocaleLowerCase().includes(term)
-      );
-      //quick & easy way to add ids to sessions
-      matchingSessions = matchingSessions.map((session: any) => {
-        session.eventId = event.id;
-        return session;
-      });
-      results = results.concat(matchingSessions);
-    });
+  searchSessions(searchTerm: string): Observable<ISession[]> {
+    return this.http
+      .get<ISession[]>('/api/sessions/search?search=' + searchTerm)
+      .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
+  }
 
-    //simulate asynchronous data reception
-    const emitter = new EventEmitter(true);
-    setTimeout(() => {
-      emitter.emit(results);
-    }, 1000);
-    return results;
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }
 
