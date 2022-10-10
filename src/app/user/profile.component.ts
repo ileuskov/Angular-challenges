@@ -69,10 +69,19 @@ export class ProfileComponent implements OnInit {
       this.AuthService.updateCurrentUser(
         profileFormValues.firstName,
         profileFormValues.lastName
-      );
+      ).subscribe(() => {
+        //by subscribing to the http observable,
+        //the toast message will only show up once the user is updated on the server
+        this.toastr.success('Profile Saved');
+      });
       // this.route.navigate(['events']);
-      this.toastr.success('Profile Saved');
     }
+  }
+
+  logout() {
+    this.AuthService.logout().subscribe(() => {
+      this.route.navigate(['/user/login']);
+    });
   }
 
   validateLastName() {
