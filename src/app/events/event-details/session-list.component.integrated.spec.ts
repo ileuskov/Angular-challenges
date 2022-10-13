@@ -3,7 +3,7 @@ import { CollapsibleWellComponent } from './../../common/collapsible-well.compon
 import { DurationPipe } from './../shared/duration.pipe';
 import { VoterService } from './voter.service';
 import { AuthService } from './../../user/auth.service';
-import { DebugElement, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SessionLinstComponent } from './session-list.component';
 import { By } from '@angular/platform-browser';
