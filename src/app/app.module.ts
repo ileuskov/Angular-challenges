@@ -1,3 +1,5 @@
+import { appRoutes } from './../routes';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +22,6 @@ import {
 } from './common/index';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 import { NavBarComponent } from './nav/navbar.component';
 
@@ -64,6 +65,7 @@ declare let jQuery: any;
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
     HttpClientModule,
   ],
   providers: [
