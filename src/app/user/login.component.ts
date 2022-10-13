@@ -18,7 +18,7 @@ export class LoginComponent {
   // they could be @Output() but (ngModel) does it automatically
   userName: any = '';
   password: any = '';
-  mouseoverLogin: boolean = false;
+  mouseoverLogin = false;
   loginInvalid = false;
   constructor(private AuthService: AuthService, private router: Router) {}
 

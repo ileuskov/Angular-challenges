@@ -1,12 +1,7 @@
-import {
-  HttpClient,
-  HttpHeaderResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IEvent, ISession } from './event.model';
-import { Injectable, EventEmitter } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -28,7 +23,7 @@ export class eventService {
   }
 
   saveEvent(newEvent: any): Observable<any> {
-    let options = {
+    const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     return this.http

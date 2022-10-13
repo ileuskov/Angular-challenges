@@ -10,7 +10,7 @@ export function restrictedWordsValidator(words: any) {
     if (!words) return null;
 
     //stores all the invalid words that need to be restricted
-    var invalidWords = words
+    const invalidWords = words
       // mapping all the words passed in as parameters and check if control.value includes them
       .map((w: any) => (control.value.includes(w) ? w : null))
       //filter out the nulls

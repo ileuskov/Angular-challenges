@@ -12,6 +12,4 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class Error404Component {
-  constructor() {}
-}
+export class Error404Component {}

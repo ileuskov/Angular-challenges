@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 @Injectable()
 export class VoterService {
   constructor(private http: HttpClient) {}
-  addVoter(eventId: number, session: ISession, voterName: string) {
+  addVoter(eventId: number, session: ISession, voterName: string): void {
     session.voters.push(voterName);
 
     const options = {
@@ -19,7 +19,7 @@ export class VoterService {
       .pipe(catchError(this.handleError('addVoter')))
       .subscribe();
   }
-  deleteVoter(eventId: number, session: ISession, voterName: string) {
+  deleteVoter(eventId: number, session: ISession, voterName: string): void {
     session.voters = session.voters.filter((voter) => voter !== voterName);
 
     const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;

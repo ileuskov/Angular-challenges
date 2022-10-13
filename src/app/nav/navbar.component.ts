@@ -27,7 +27,7 @@ import { Component, Inject, InjectionToken } from '@angular/core';
   ],
 })
 export class NavBarComponent {
-  searchTerm: string = '';
+  searchTerm = '';
   foundSessions!: ISession[];
 
   constructor(

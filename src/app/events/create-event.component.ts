@@ -32,7 +32,7 @@ import { Component } from '@angular/core';
 })
 export class CreateEventComponent {
   newEvent!: any;
-  isDirty: boolean = true;
+  isDirty = true;
   constructor(private router: Router, private eventService: eventService) {}
 
   saveEvent(newEventFormValues: any) {

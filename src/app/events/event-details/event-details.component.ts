@@ -21,10 +21,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class eventDetailsComponent implements OnInit {
   event!: IEvent | any;
-  addMode: boolean = false;
+  addMode = false;
 
-  filterBy: string = 'all';
-  sortBy: string = 'votes';
+  filterBy = 'all';
+  sortBy = 'votes';
 
   constructor(
     private eventService: eventService,
