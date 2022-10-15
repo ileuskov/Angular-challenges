@@ -1,31 +1,30 @@
 # Angular events App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+# General Info
 
-## Development server
+This is an Angular 14 Web App with a custom api server
+The app is a collection an angular events (conferences, meetups, etc) that can be browsed, searched for and edited by a user
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Features included
 
-## Code scaffolding
+1. Ability to add new events, their sessions and save them in the backend
+2. User authentication with login, user data management & logout
+3. Route navigation through different URL parameters and route guarding
+4. Custom validators, pipes & sorts
+5. Possibility to sort events' data and give likes to sessions (only for authenticated users)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Technologies used
 
-## Build
+1. Angular 14
+2. Bootstrap 4
+3. SASS as preprocessor
+4. Karma & Jasmine for unit & integration testing
+5. GitHub Actions for CI/CD Pipeline
+6. ESLint for linting
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# To start the app:
 
-## Running unit tests
+server has to be started in a separate console. So use:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## server has to be started in a separate console.
-
-Otherwise it tries to use the same 4200 port
+1. ng serve --proxy-config proxy.conf.json
+2. npm run server
