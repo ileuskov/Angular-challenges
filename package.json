@@ -9,7 +9,8 @@
     "test": "ng test",
     "server": "node node_modules/ngf-server/server.js",
     "lint": "eslint src --ext .ts",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "e2e": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +36,7 @@
     "@types/jasmine": "~4.0.0",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
+    "cypress": "^10.10.0",
     "eslint": "^8.25.0",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
