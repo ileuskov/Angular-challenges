@@ -38,6 +38,7 @@
     "@typescript-eslint/parser": "^5.40.0",
     "cypress": "^10.10.0",
     "eslint": "^8.25.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
