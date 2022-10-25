@@ -19,8 +19,9 @@ The app is a collection an angular events (conferences, meetups, etc) that can b
 2. Bootstrap 4
 3. SASS as preprocessor
 4. Karma & Jasmine for unit & integration testing
-5. GitHub Actions for CI/CD Pipeline
-6. ESLint for linting
+5. Cypress for E2E testing
+6. GitHub Actions for CI/CD Pipeline
+7. ESLint for linting
 
 # To start the app:
 
