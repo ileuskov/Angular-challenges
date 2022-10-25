@@ -1,5 +1,5 @@
 <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
-  <h2>{{ event?.name | uppercase }}</h2>
+  <h2 class="eventName">{{ event?.name | uppercase }}</h2>
   <div>Date: {{ event?.date | date: "d/M/y" }}</div>
   <div [ngClass]="getStartTimeClass()" [ngSwitch]="event?.time">
     Time: {{ event?.time }}
@@ -20,7 +20,12 @@
     >
   </div>
   <div *ngIf="event?.onlineUrl">Online Url: {{ event?.onlineUrl }}</div>
-  <button type="button" (click)="handleClickMe()" class="btn btn-success">
+  <button
+    type="button"
+    (click)="handleClickMe()"
+    class="btn btn-success"
+    data-cy="eventDetails"
+  >
     More Infos
   </button>
 </div>
